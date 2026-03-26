@@ -1,4 +1,10 @@
-package com.pao.laboratory03.collections;
+package com.pao.laboratory04.collections;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Exercițiul 1 — Colecții: HashMap și TreeMap
@@ -50,7 +56,59 @@ package com.pao.laboratory03.collections;
  */
 public class Main {
     public static void main(String[] args) {
-        // TODO: implementează cele 3 părți de mai sus
+
+        // # partea a
+        System.out.println("partea a");
+
+        String[] words = {"java", "python", "java", "c++", "python", "java", "rust", "c++", "go"};
+
+        Map<String, Integer> freq = new HashMap<>();
+        for (String word : words) 
+        {
+            freq.put(word, freq.getOrDefault(word, 0) + 1);
+        }
+
+        System.out.println("frecventa: " + freq);
+        System.out.println("contine rust? " + freq.containsKey("rust"));
+        System.out.println("chei: " + freq.keySet());
+        System.out.println("valori: " + freq.values());
+
+        for (Map.Entry<String, Integer> entry : freq.entrySet()) 
+        {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        }
+
+
+
+        // # partea b
+        System.out.println("partea b");
+
+        TreeMap<String, Integer> sorted = new TreeMap<>(freq);
+        System.out.println("sortat: " + sorted);
+        System.out.println("prima cheie: " + sorted.firstKey());
+        System.out.println("ultima cheie: " + sorted.lastKey());
+
+
+
+        // # partea c
+        System.out.println("partea c");
+
+        Map<String, List<String>> courses = new HashMap<>();
+
+        List<String> studentiPaoj = new ArrayList<>();
+        studentiPaoj.add("Ana");
+        studentiPaoj.add("Mihai");
+        studentiPaoj.add("Ion");
+        courses.put("PAOJ", studentiPaoj);
+
+        List<String> studentiBd = new ArrayList<>();
+        studentiBd.add("Ana");
+        studentiBd.add("Elena");
+        courses.put("BD", studentiBd);
+
+        System.out.println("studenti la paoj: " + courses.get("PAOJ"));
+
+        courses.get("BD").add("George");
+        System.out.println("studenti la bd actualizat: " + courses.get("BD"));
     }
 }
-
