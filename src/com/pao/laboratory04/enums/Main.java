@@ -1,4 +1,4 @@
-package com.pao.laboratory03.enums;
+package com.pao.laboratory04.enums;
 
 /**
  * Exercițiul 2 — Enum-uri
@@ -32,7 +32,7 @@ package com.pao.laboratory03.enums;
  * 🔴 CRITICAL (level=4, color=red)
  *
  * === Switch pe prioritate ===
- * ⚠️ Atenție! Prioritate ridicată!
+ * Atenție! Prioritate ridicată!
  *
  * === valueOf ===
  * Priority.valueOf("HIGH") = HIGH
@@ -49,8 +49,42 @@ package com.pao.laboratory03.enums;
  */
 public class Main {
     public static void main(String[] args) {
-        // TODO: implementează pașii de mai sus
-        // Hint: creează mai întâi fișierul Priority.java în acest pachet
+
+        System.out.println("toate prioritatile");
+        for (Priority p : Priority.values()) {
+            System.out.println(p.getEmoji() + " " + p + " (level=" + p.getLevel() + ", color=" + p.getColor() + ")");
+        }
+        System.out.println("\n");
+        System.out.println("switch pe prioritate");
+        Priority current = Priority.HIGH;
+        switch (current) {
+            case LOW:
+                System.out.println("totul e ok");
+                break;
+            case MEDIUM:
+                System.out.println("atentie!");
+                break;
+            case HIGH:
+                System.out.println("prioritate ridicata!");
+                break;
+            case CRITICAL:
+                System.out.println("critic!");
+                break;
+        }
+
+        System.out.println("\nvalueof");
+        Priority p = Priority.valueOf("HIGH");
+        System.out.println("Priority.valueOf(\"HIGH\") = " + p);
+
+        System.out.println("\ncomparare enum");
+        Priority a = Priority.HIGH;
+        Priority b = Priority.HIGH;
+        System.out.println("HIGH == HIGH? " + (a == b));
+        System.out.println("HIGH == LOW? " + (Priority.HIGH == Priority.LOW));
+
+        System.out.println("\nname() si ordinal()");
+        for (Priority pr : Priority.values()) {
+            System.out.println(pr + ": name=" + pr.name() + ", ordinal=" + pr.ordinal());
+        }
     }
 }
-
