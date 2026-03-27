@@ -1,4 +1,4 @@
-package com.pao.laboratory03.exceptions;
+package com.pao.laboratory04.exceptions;
 
 /**
  * Exercițiul 3 — Excepții (checked, unchecked, custom)
@@ -59,9 +59,76 @@ package com.pao.laboratory03.exceptions;
  * Metoda process() a aruncat: Vârsta 999 nu este validă (0-150)
  */
 public class Main {
+
+    static void riskyMethod() {
+        String s = null;
+        s.length();
+    }
+
+    static void validateAge(int age) {
+        if (age < 0 || age > 150) {
+            throw new InvalidAgeException("varsta " + age + " nu este valida (0-150)");
+        }
+    }
+
+    static void addToList(java.util.List<String> list, String name) {
+        if (list.contains(name)) {
+            throw new DuplicateEntryException(name + " exista deja in lista");
+        }
+        list.add(name);
+    }
+
+    static void process(int age) throws InvalidAgeException {
+        validateAge(age);
+    }
+
     public static void main(String[] args) {
-        // TODO: implementează pașii de mai sus
-        // Hint: creează mai întâi InvalidAgeException.java și DuplicateEntryException.java
+
+        System.out.println("a) unchecked - nullpointerexception");
+        try {
+            riskyMethod();
+        } catch (NullPointerException e) {
+            System.out.println("prins: " + e.getMessage());
+        } finally {
+            System.out.println("finally se executa mereu!");
+        }
+
+        System.out.println("\nb) custom exceptions");
+        try {
+            validateAge(-5);
+        } catch (InvalidAgeException e) {
+            System.out.println("InvalidAgeException: " + e.getMessage());
+        }
+
+        java.util.List<String> list = new java.util.ArrayList<>();
+        list.add("Ana");
+        try {
+            addToList(list, "Ana");
+        } catch (DuplicateEntryException e) {
+            System.out.println("DuplicateEntryException: " + e.getMessage());
+        }
+
+        System.out.println("\nc) multi-catch");
+        try {
+            validateAge(200);
+        } catch (InvalidAgeException | DuplicateEntryException e) {
+            System.out.println("exceptie prinsa: " + e.getMessage());
+        }
+
+        System.out.println("\nd) catch ordering (specific -> general)");
+        try {
+            validateAge(-1);
+        } catch (InvalidAgeException e) {
+            System.out.println("InvalidAgeException prinsa specific: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("RuntimeException generala: " + e.getMessage());
+        }
+
+        System.out.println("\ne) throw vs throws");
+        try {
+            process(999);
+        } catch (InvalidAgeException e) {
+            System.out.println("metoda process() a aruncat: " + e.getMessage());
+        }
     }
 }
-
