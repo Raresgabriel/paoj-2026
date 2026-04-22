@@ -1,6 +1,6 @@
-package com.pao.laboratory02.exercise4.service;
+package com.pao.laboratory03.exercise4.service;
 
-import com.pao.laboratory02.exercise4.model.Animal;
+import com.pao.laboratory03.exercise4.model.Animal;
 
 import java.util.ArrayList;
 import java.util.List;

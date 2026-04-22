@@ -1,7 +1,7 @@
-package com.pao.laboratory01;
+package com.pao.laboratory02;
 
-import com.pao.laboratory01.model.Dog;
-import com.pao.laboratory01.model.Cat;
+import com.pao.laboratory02.model.Dog;
+import com.pao.laboratory02.model.Cat;
 
 import java.util.Arrays;
 
@@ -14,8 +14,8 @@ import java.util.Arrays;
  *  - Cum lucrăm cu array-uri de obiecte (redimensionare dinamică, sortare)
  *
  *  Rezolvați exercițiile din:
- *    1. com.pao.laboratory01.arrays      → ArrayDemo.java
- *    2. com.pao.laboratory01.exercise    → Car.java, CarService.java, Main.java
+ *    1. com.pao.laboratory02.arrays      → ArrayDemo.java
+ *    2. com.pao.laboratory02.exercise    → Car.java, CarService.java, Main.java
  *
  *  Începeți prin a citi acest fișier și clasele din model/ — apoi treceți la exerciții.
  */

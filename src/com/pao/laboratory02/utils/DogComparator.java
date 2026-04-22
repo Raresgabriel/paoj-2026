@@ -1,6 +1,6 @@
-package com.pao.laboratory01.utils;
+package com.pao.laboratory02.utils;
 
-import com.pao.laboratory01.model.Dog;
+import com.pao.laboratory02.model.Dog;
 
 import java.util.Comparator;
 

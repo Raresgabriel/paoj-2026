@@ -4,6 +4,11 @@ Materiale și resurse pentru cursul **Programare Avansată pe Obiecte în Java**
 
 ---
 
+## Proiect
+
+📁 **[Cerințe proiect individual](src/com/pao/project/README.md)** — Etapa I (24 apr) · Etapa II (5 iun)
+
+
 ## Laboratoare
 
 | Laborator                                          | Subiect                                                          |
@@ -13,19 +18,107 @@ Materiale și resurse pentru cursul **Programare Avansată pe Obiecte în Java**
 | [laboratory03](src/com/pao/laboratory03/Readme.md) | Moștenire, clase abstracte, interfețe, equals/hashCode, colecții |
 | [laboratory04](src/com/pao/laboratory04/Readme.md) | Map, enum-uri, excepții custom                                   |
 | [laboratory05](src/com/pao/laboratory05/Readme.md) | Records, Comparable aprofundat, Comparator multiplu              |
+| [laboratory06](src/com/pao/laboratory06/Readme.md) | Interfețe și clase — studiu detaliat (Comparable, Comparator, callback, extindere) |
+| [laboratory07](src/com/pao/laboratory07/Readme.md) | Sealed classes și enum-uri — concepte avansate                    |
+| [laboratory08](src/com/pao/laboratory08/Readme.md) | Interfețe marker, clonare superficială/profundă și introducere fluxuri I/O |
+
+- `laboratory07` a introdus construcțiile mai noi din limbaj: `sealed` classes și un studiu mai aprofundat al `enum`-urilor.
+- `laboratory08` acoperă interfețele marker (`Cloneable`, `Serializable`), clonarea superficială vs. profundă și introducerea în fluxuri de I/O (`FileReader`, `BufferedReader`, `BufferedWriter`).
+- `laboratory09` va aprofunda fluxurile de I/O: `DataInputStream`/`DataOutputStream`, `RandomAccessFile`, `ByteBuffer`, `try-with-resources` și `Serializable` ca exercițiu obligatoriu.
 
 Începând cu **laboratory04**, soluțiile se trimit pe GitHub la un fork personal al acestui repo.
-**Data limită:** miercuri, ora 23:59, în fiecare săptămână.
+**Data limită:** vineri, ora 23:59, în fiecare săptămână. Mai multe detalii doua sectiuni mai jos (TODO adauga link)
+
+---
+
+### TODO NOUTATE laboratory06-laboratory14: verificarea automata a calculelor din exercițiile obligatorii
+
+You have a jar in the root folder, under ./utils:
+
+[java-diff-utils-4.15.jar](src/com/pao/test/utils/java-diff-utils-4.15.jar)
+
+A .jar file si like an archive of an library, in this case com.github.difflib.
+
+Steps needed to run the tests:
+
+
+1. In IntelliJ
+   
+   > Right-click the jar
+   > 
+   > → "Add as Library"
+   > 
+   > → Select your project Module
+   > 
+   > → Ok (button).
+
+2. In VS Code: Update your .classpath or launch config if needed.
+   - Example .classpath entry:
+   ```xml
+   <classpathentry kind="lib" path="src/com/pao/test/utils/java-diff-utils-4.15.jar"/>
+   ```
+    - Example launch config:
+    ```json
+    {
+        "type": "java",
+        "name": "Launch Main",
+        "request": "launch",
+        "mainClass": "com.pao.laboratory04.Main",
+        "classpath": [
+            "src/com/pao/test/utils/java-diff-utils-4.15.jar"
+        ]
+    }
+    ```
+   >  TODO !!! inca lucrez pentru a gasi o solutie clara pentru VS Code.
+
+
+3. How to run in terminal?
+
+#### Windows PowerShell
+```powershell
+# Compile all files in any folder (replace PATH with src or src\com\pao\laboratory06, etc.)
+javac -d output @((Get-ChildItem -Recurse -Filter "*.java" -Path PATH).FullName)
+
+# With JAR (for tests)
+javac -d output -cp "lib\java-diff-utils-4.15.jar" @((Get-ChildItem -Recurse -Filter "*.java" -Path PATH).FullName)
+
+# Run
+java -cp output com.pao.laboratory06.exercise1.Main
+java -cp "output;lib\java-diff-utils-4.15.jar" com.pao.laboratory06.exercise1.Test
+```
+
+#### macOS / Linux / WSL
+```bash
+# Compile all files in any folder (replace PATH with src or src/com/pao/laboratory06, etc.)
+javac -d output $(find PATH -name "*.java" -type f)
+
+# With JAR (for tests)
+javac -d output -cp "lib/java-diff-utils-4.15.jar" $(find PATH -name "*.java" -type f)
+
+# Run
+java -cp output com.pao.laboratory06.exercise1.Main
+java -cp "output:lib/java-diff-utils-4.15.jar" com.pao.laboratory06.exercise1.Test
+```
+
+⚠️ **Key:** Replace `PATH` with your desired folder — includes all subdirectories automatically.
+- Full project: `src`
+- Single lab: `src/com/pao/laboratory06`
+- Single exercise: `src/com/pao/laboratory06/exercise1`
+
+---
+## Revenind la trimiterea solutiilor
+
 
 Mai jos găsești:
 
+0. Ce sa aveti deja instalat (TODO adauga link)
 1. [Cum trimiți soluțiile](#1-cum-trimiți-soluțiile) — fork, configurare remotes, commit săptămânal
 2. [Formularul de înregistrare](#2-completați-url-ul-fork-ului) — link fork personal
 3. [Punctarea laboratoarelor](#3-punctarea-laboratoarelor) — prezență, obligatoriu, bonus
 
----
 
-### Pre-rechizite (pentru trimiterea soluțiilor)
+
+### 0. Ce sa aveti deja instalat pe calculatoare
 
 - ✅ Cont pe [github.com](https://github.com) (gratuit)
 - ✅ Git instalat — verifică cu `git --version` ([descarcă de aici](https://git-scm.com/downloads) dacă nu ai)
@@ -34,16 +127,16 @@ Mai jos găsești:
 Dacă vrei să te conectezi ușor la GitHub din terminal, recomand să instalezi și
 configurezi [GitHub CLI](https://cli.github.com/):
 
-După aceea, scrii
+După aceea, scrieti:
 
 ```bash
 gh auth login
 ```
 
-Apeși Enter, Enter, Y, Enter, Enter, și te autentifici în browser.
+Apasati Enter, Enter, Y, Enter, Enter, și te autentifici în browser.
 După ce te întorci în terminal, ar trebui să vezi mesajul "Logged in to github.com as USERNAME".
 
-## 1. Cum trimiți soluțiile
+### 1. Cum trimiți soluțiile
 
 > 🎬 **Video tutorial:**
 >
@@ -58,7 +151,7 @@ După ce te întorci în terminal, ar trebui să vezi mesajul "Logged in to gith
 
 ---
 
-### Partea 1 - Configurare inițială (o singură dată)
+#### Partea 1 - Configurare inițială (o singură dată)
 
 **1. Salvează-ți munca curentă (dacă ai folosit Git)**
 
@@ -116,7 +209,7 @@ git remote -v
 
 ✅ **Gata!** Ai acum un repo local conectat la două remote-uri: `origin` (fork-ul tău) și `upstream` (repo-ul cursului).
 
-### Partea 2 - Flux săptămânal
+#### Partea 2 - Flux săptămânal
 
 **1. Preiei branch-ul nou de pe `upstream`:**
 
@@ -142,149 +235,52 @@ git commit -m "LabX: exercitiile 1-4 completate"
 git push origin labX
 ```
 
-## 2. Completați URL-ul fork-ului
+### 2. Completați URL-ul fork-ului
 
 Trimite link-ul fork-ului pe formularul următor, ca să știm cui oferim punctajul:
 
 [PAOJ 2026 - Alegerea proiectului si Incarcarea activitatii](https://forms.gle/zKPvTiP3oTJrxhR19)
 
-## 3. Punctarea laboratoarelor
+### 3. Punctarea laboratoarelor
 
-### Structura notei finale
+#### Structura notei finale
 
 | Componentă              | Pondere |
 |-------------------------|---------|
 | Proiect individual      | 50%     |
-| Laboratoare (10 din 14) | 25%     |
+| Laboratoare (12 din 14 fara bonus, 10/11 cu 10/5 bonusuri) | 25%     |
 | Activitate și prezență  | 25%     |
 
-### Prezență
+#### Prezență
 
-- **10 prezențe obligatorii** din 14 laboratoare
+- **12 prezențe obligatorii** din 14 laboratoare (sau 11+5bonusuri, sau 10+10 bonusuri)
 - Laburile 1–3 sunt punctate pentru prezență + soluție completă
 - La Lab 04, exercițiul bonus era opțional — absența lui nu scade punctajul
 
-### Laboratoarele 4–14
+#### Laboratoarele 4–14
 
-Fiecare laborator valorează **2.5%** din nota finală:
+Fiecare laborator valorează **2.08(3)%** din nota finală:
 
-| Ce rezolvi                       | Punctaj |
-|----------------------------------|---------|
-| Prezență + exerciții obligatorii | 1.5%    |
-| Exercițiul bonus                 | 1.0%    |
-
----
-
-## Cum trimiți soluțiile (începând cu laboratory04)
-
-[//]: # (> 🎬 **Video tutorial:** [Cum faci fork și trimiți soluțiile — YouTube]&#40;https://www.youtube.com/watch?v=PLACEHOLDER&#41;)
-
-### Pentru laboratoarele online din saptamanile 4-14
+| Ce rezolvi                       | Punctaj                   |
+|----------------------------------|---------------------------|
+| Prezență + exerciții obligatorii | 2.08(3)% (practic 25%/12) |
+| Exercițiul bonus                 | 0.4%                      |
 
 #### Prezenta
 
 -> se deduce din submit-ul saptamanal, plus prezentarea o data la 2 saptamani a ce ati lucrat (online/fizic)
 
-#### Punctajul
+#### Punctajul (TODO sa revin cu rezumat la fiecare saptamana in parte)
 
 -> in laboratoarele 4-14 aveti si exercitii bonus, care valoreaza 2.5% din punctajul total al prezentei+activitate.
 
-Reminder:
-Prezenta + activitate -> 25%, din care 12.5% pentru prezenta, 7.5% daca rezolvati cel putin exercitiile obligatorii, si
-5% daca rezolvati si exercitiile bonus.
-Proiect -> 25%
-
-### Pre-rechizite
-
-- ✅ Cont pe [github.com](https://github.com) (gratuit)
-- ✅ Git instalat — `git --version` în terminal ([descarcă de aici](https://git-scm.com/downloads) dacă nu ai)
-- ✅ Autentificare configurată — recomand [GitHub CLI](https://cli.github.com/) (`gh auth login`) sau SSH key
-
+<br />
+<br />
 ---
-
-**1. Fork** — creează-ți propria copie a repo-ului:
-
-- Deschide repo-ul cursului pe GitHub
-- Click **Fork** (dreapta sus) → **Create fork**
-- Acum ai `https://github.com/USERNAME-UL-TAU/paoj-2026`
-
-**2. Schimbi `origin` să pointeze spre fork-ul tău:**
-
-```bash
-cd C:\Users\stefan\path\to\paoj-2026  # sau unde ai tu clona locală
-git remote rename origin upstream
-git remote add origin https://github.com/USERNAME-UL-TAU/paoj-2026.git
-```
-
-**3. Push-ul inițial către fork:**
-
-```bash
-git push -u origin main
-```
-
-**4. Verifică:**
-
-```bash
-git remote -v
-# origin    https://github.com/USERNAME-UL-TAU/paoj-2026.git          (fork-ul tău)
-# upstream  https://github.com/stefaneduard-deaconu/paoj-2026.git    (repo-ul cursului)
-```
-
-✅ **Gata!** Acum ai aceeași configurație ca cei care încep de la zero.
-
+Urmatoare sectiune contine doar intrebari adresate de voi ca studenti, si raspunsurile pe care le-ati gasit sau le-am gasit impreuna.
 ---
-
-### 🆕 VARIANTA B — Începi acum (studenți noi)
-
-**1. Fork + clone:**
-
-- Deschide [https://github.com/stefaneduard-deaconu/paoj-2026](https://github.com/stefaneduard-deaconu/paoj-2026)
-- Click **Fork** → **Create fork**
-- Clonează fork-ul tău:
-
-```bash
-git clone https://github.com/USERNAME-UL-TAU/paoj-2026.git
-cd paoj-2026
-```
-
-**2. Adaugă repo-ul cursului ca `upstream`:**
-
-```bash
-git remote add upstream https://github.com/stefaneduard-deaconu/paoj-2026.git
-```
-
-**3. Verifică:**
-
-```bash
-git remote -v
-# origin    https://github.com/USERNAME-UL-TAU/paoj-2026.git          (fork-ul tău)
-# upstream  https://github.com/stefaneduard-deaconu/paoj-2026.git    (repo-ul cursului)
-```
-
----
-
-### 📅 Flux săptămânal (pentru TOȚI studenții)
-
-**1. Actualizează** cu materialele noi de la curs:
-
-```bash
-git fetch upstream labX  # e.g. lab5 for laboratory04 of March 23-24th
-git checkout labX        # e.g. lab5 for laboratory04 of March 23-24th
-```
-
-**2. Lucrează** la exerciții — creează clase, completează TODO-uri.
-
-**3. Salvează** progresul:
-
-```bash
-git add .
-git commit -m "Lab5: exercitiile 1-4 completate"
-git push origin labX  # origin is your fork.
-```
-
-**4. Submit** — link către fork-ul tău pe platforma de curs.
-
----
+<br />
+<br />
 
 ## Întrebări frecvente (FAQ)
 

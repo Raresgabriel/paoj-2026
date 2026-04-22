@@ -1,4 +1,4 @@
-package com.pao.laboratory01.comparators;
+package com.pao.laboratory02.comparators;
 
 // EXERCITIU 1: cream in pachetul comparators o clasa Podcast cu durata (secunde, int) si titlu (string)
 // dupa modelul AudioBook.java si Book.java, implementati:

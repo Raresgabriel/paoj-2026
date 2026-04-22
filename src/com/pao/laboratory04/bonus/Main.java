@@ -1,4 +1,4 @@
-package com.pao.laboratory03.bonus;
+package com.pao.laboratory04.bonus;
 
 /**
  * Exercițiul 5 (Bonus) — Sistem de gestiune task-uri cu audit log

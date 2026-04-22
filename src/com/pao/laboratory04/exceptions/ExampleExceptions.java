@@ -1,4 +1,4 @@
-package com.pao.laboratory03.exceptions;
+package com.pao.laboratory04.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.pao.laboratory01.arrays;
+package com.pao.laboratory02.arrays;
 
-import com.pao.laboratory01.model.Dog;
-import com.pao.laboratory01.utils.DogComparator;
+import com.pao.laboratory02.model.Dog;
+import com.pao.laboratory02.utils.DogComparator;
 
 import java.util.Arrays;
 

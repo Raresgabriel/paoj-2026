@@ -1,4 +1,4 @@
-package com.pao.laboratory03.collections;
+package com.pao.laboratory04.collections;
 
 import java.util.*;
 

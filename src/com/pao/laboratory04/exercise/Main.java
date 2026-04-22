@@ -1,4 +1,4 @@
-package com.pao.laboratory03.exercise;
+package com.pao.laboratory04.exercise;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package com.pao.laboratory01.model;
+package com.pao.laboratory02.model;
 
 /**
  * Exemplu de clasă cu încapsulare.
