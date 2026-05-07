@@ -1,6 +1,15 @@
 # tutors only private materials
 previous-*
 private/
+temporarily_curs
+
+# output directories of .class
+out/
+output/
+
+# binary files required in the tests directory
+*.bin
+*.ser
 
 # for tests:
 *.diff
