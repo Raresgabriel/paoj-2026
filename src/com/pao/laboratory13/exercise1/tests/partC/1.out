@@ -1,0 +1,6 @@
+OK AUTH user=a
+OK OPEN
+OK OPEN sent
+OK OPEN broadcast
+OK OPEN history=2
+OK CLOSED

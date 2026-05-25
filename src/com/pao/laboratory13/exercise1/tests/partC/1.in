@@ -1,0 +1,7 @@
+6
+AUTH a
+OPEN
+SEND hello
+BROADCAST ping
+HISTORY
+CLOSE

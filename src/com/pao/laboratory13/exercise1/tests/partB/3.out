@@ -1,0 +1,6 @@
+OK AUTH user=alice
+OK OPEN
+OK AUTH user=bob
+ERR E_STATE NOT_OPEN
+OK OPEN
+
