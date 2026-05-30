@@ -24,15 +24,21 @@ Materiale și resurse pentru cursul **Programare Avansată pe Obiecte în Java**
 | [laboratory09](src/com/pao/laboratory09/Readme.md) | Fluxuri I/O avansate: DataInputStream/DataOutputStream, RandomAccessFile, ByteBuffer, try-with-resources, Serializable |
 | [laboratory10](src/com/pao/laboratory10/Readme.md) | Predicate, compoziție de reguli, Lambda avansat, Comparator complex, Stream API aplicat |
 | [laboratory11](src/com/pao/laboratory11/Readme.md) | Collector custom, snapshot imutabil, motor de reguli antifraudă (exerciții) |
+| [laboratory12](src/com/pao/laboratory12/Readme.md) | JDBC, persistență, tranzacții și audit |
+| [laboratory13](src/com/pao/laboratory13/Readme.md) | Motor de protocol și demo socket |
+| [laboratory14](src/com/pao/laboratory14/Readme.md) | Collector custom, SQLite și algoritmi de planificare |
 
 - `laboratory07` a introdus construcțiile mai noi din limbaj: `sealed` classes și un studiu mai aprofundat al `enum`-urilor.
 - `laboratory08` acoperă interfețele marker (`Cloneable`, `Serializable`), clonarea superficială vs. profundă și introducerea în fluxuri de I/O (`FileReader`, `BufferedReader`, `BufferedWriter`).
 - `laboratory09` va aprofunda fluxurile de I/O: `DataInputStream`/`DataOutputStream`, `RandomAccessFile`, `ByteBuffer`, `try-with-resources` și `Serializable` ca exercițiu obligatoriu.
 - `laboratory10` abordează expresii lambda avansate, `Predicate` și compoziția de reguli (exerciții cu motor de reguli), plus utilizarea avansată a `Stream` API-ului și `Comparator`-ilor compuși.
 - `laboratory11` se concentrează pe colecții avansate și agregare: implementarea unui `Collector` custom, snapshot-uri imutabile și integrarea unui mic motor de reguli antifraudă (exerciții 1–3).
+- `laboratory12` trece la JDBC și persistență: conexiune la bază de date, CRUD, tranzacții și audit.
+- `laboratory13` introduce un motor de protocol text și un demo socket multi-client.
+- `laboratory14` închide seria cu un alt `Collector` custom, persistare SQLite și o problemă clasică de planificare cu `PriorityQueue`.
 
 Începând cu **laboratory04**, soluțiile se trimit pe GitHub la un fork personal al acestui repo.
-**Data limită:** vineri, ora 23:59, în fiecare săptămână. Mai multe detalii doua sectiuni mai jos (TODO adauga link)
+**Data limită:** vineri, ora 23:59, în fiecare săptămână.
 
 ---
 
