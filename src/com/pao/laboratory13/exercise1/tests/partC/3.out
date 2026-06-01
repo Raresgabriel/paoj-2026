@@ -1,0 +1,8 @@
+OK AUTH user=a
+OK OPEN
+OK OPEN sent
+OK AUTH user=b
+OK OPEN
+OK OPEN history=0
+OK CLOSED
+

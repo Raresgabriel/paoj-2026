@@ -1,0 +1,7 @@
+5
+AUTH alice
+OPEN
+AUTH bob
+SEND hi
+OPEN
+

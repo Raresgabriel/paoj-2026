@@ -1,0 +1,5 @@
+OK AUTH user=alice
+OK OPEN
+OK OPEN sent
+OK OPEN broadcast
+OK CLOSED

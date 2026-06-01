@@ -1,0 +1,6 @@
+5
+AUTH alice
+OPEN
+SEND hello
+BROADCAST ping
+CLOSE
