@@ -33,6 +33,7 @@ public class DatabaseConnection {
         String url      = props.getProperty("db.url");
         String user     = props.getProperty("db.user", "");
         String password = props.getProperty("db.password", "");
+        try { Class.forName("org.sqlite.JDBC"); } catch (ClassNotFoundException ignored) {}
         this.connection = DriverManager.getConnection(url, user, password);
     }
 
