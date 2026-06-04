@@ -122,10 +122,11 @@ public class Main {
             List.of("AUTH bob", "OPEN", "SEND world", "BROADCAST hi", "HISTORY", "CLOSE")
         );
 
+        ExecutorService clientPool = Executors.newFixedThreadPool(2);
         for (int i = 0; i < 2; i++) {
             int clientId = i + 1;
             List<String> script = scripts.get(i);
-            pool.submit(() -> {
+            clientPool.submit(() -> {
                 try (Socket sock = new Socket("localhost", port);
                      BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
                      PrintWriter out = new PrintWriter(sock.getOutputStream(), true)) {
@@ -139,6 +140,8 @@ public class Main {
             });
         }
 
+        clientsDone.await();
+        clientPool.shutdown();
         pool.shutdown();
         pool.awaitTermination(10, java.util.concurrent.TimeUnit.SECONDS);
     }
