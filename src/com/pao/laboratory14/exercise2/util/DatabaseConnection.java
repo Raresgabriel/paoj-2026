@@ -19,22 +19,28 @@ public class DatabaseConnection {
     private Connection connection;
 
     private DatabaseConnection() throws IOException, SQLException {
-        Properties props = new Properties();
+        String url  = "jdbc:sqlite:output/lab14_ex2.db";
+        String user = "";
+        String pass = "";
+
+        // incearca sa citeasca db.properties din classpath (merge din terminal cu -cp resources/)
+        // daca nu e gasit (ex: IntelliJ fara Resources Root configurat) foloseste fallback SQLite
         try (InputStream is = getClass().getClassLoader().getResourceAsStream("db.properties")) {
-            if (is == null) {
-                throw new IOException(
-                    "db.properties nu a fost gasit pe classpath. " +
-                    "Marcheaza 'exercise2/resources/' ca Resources Root in IntelliJ: " +
-                    "clic dreapta -> Mark Directory as -> Resources Root"
-                );
+            if (is != null) {
+                Properties props = new Properties();
+                props.load(is);
+                url  = props.getProperty("db.url", url);
+                user = props.getProperty("db.user", "");
+                pass = props.getProperty("db.password", "");
             }
-            props.load(is);
         }
-        String url      = props.getProperty("db.url");
-        String user     = props.getProperty("db.user", "");
-        String password = props.getProperty("db.password", "");
+
         try { Class.forName("org.sqlite.JDBC"); } catch (ClassNotFoundException ignored) {}
-        this.connection = DriverManager.getConnection(url, user, password);
+
+        // asigura-te ca directorul output/ exista
+        new java.io.File("output").mkdirs();
+
+        this.connection = DriverManager.getConnection(url, user, pass);
     }
 
     public static DatabaseConnection getInstance() throws IOException, SQLException {
