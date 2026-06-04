@@ -2,6 +2,7 @@ package com.pao.proiect.catalog.service;
 
 import com.pao.proiect.catalog.exception.ElevInexistentException;
 import com.pao.proiect.catalog.model.Elev;
+import com.pao.proiect.catalog.service.AuditService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,6 +33,7 @@ public class ElevService {
             throw new IllegalArgumentException("Elev null");
         }
         eleviDupaCnp.put(elev.getCnp(), elev);
+        AuditService.getInstance().log("adauga_elev");
     }
 
     public void sterge(String cnp) {
@@ -42,6 +44,7 @@ public class ElevService {
         if (removed.getClasaScolara() != null) {
             removed.getClasaScolara().stergeElev(removed);
         }
+        AuditService.getInstance().log("sterge_elev");
     }
 
     public Elev cautaDupaCnp(String cnp) {
@@ -49,6 +52,7 @@ public class ElevService {
         if (e == null) {
             throw ElevInexistentException.pentruCnp(cnp);
         }
+        AuditService.getInstance().log("cauta_elev_cnp");
         return e;
     }
 

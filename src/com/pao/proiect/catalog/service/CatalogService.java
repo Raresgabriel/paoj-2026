@@ -1,6 +1,7 @@
 package com.pao.proiect.catalog.service;
 
 import com.pao.proiect.catalog.exception.ElevInexistentException;
+import com.pao.proiect.catalog.service.AuditService;
 import com.pao.proiect.catalog.exception.MaterieInexistentaException;
 import com.pao.proiect.catalog.exception.NotaInvalidaException;
 import com.pao.proiect.catalog.model.AnScolar;
@@ -63,6 +64,7 @@ public class CatalogService {
         }
         materiiDupaCod.put(materie.getCod(), materie);
         materiiSortate.add(materie);
+        AuditService.getInstance().log("adauga_materie");
     }
 
     public void stergeMaterie(String cod) {
@@ -90,6 +92,7 @@ public class CatalogService {
             throw new IllegalArgumentException("Clasa null");
         }
         claseDupaId.put(clasa.getId(), clasa);
+        AuditService.getInstance().log("inregistreaza_clasa");
     }
 
     public void stergeClasa(String id) {
@@ -116,6 +119,7 @@ public class CatalogService {
         Clasa c = cautaClasa(idClasa);
         List<Elev> elevi = new ArrayList<>(c.getElevi());
         Collections.sort(elevi);
+        AuditService.getInstance().log("listeaza_elevi_clasa");
         return elevi;
     }
 
@@ -135,6 +139,7 @@ public class CatalogService {
         }
         Nota nota = new Nota(valoare, data, elev, materie, profesor, tip);
         noteElevi.computeIfAbsent(elev, k -> new ArrayList<>()).add(nota);
+        AuditService.getInstance().log("acorda_nota");
         return nota;
     }
 
@@ -165,6 +170,7 @@ public class CatalogService {
         for (Nota n : note) {
             suma += n.getValoare();
         }
+        AuditService.getInstance().log("calcul_medie_materie");
         return suma / note.size();
     }
 
@@ -186,6 +192,7 @@ public class CatalogService {
             }
             sumaMedii += sumaNote / e.getValue().size();
         }
+        AuditService.getInstance().log("calcul_medie_generala");
         return sumaMedii / peMaterie.size();
     }
 }

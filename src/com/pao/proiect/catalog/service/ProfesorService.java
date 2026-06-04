@@ -2,6 +2,7 @@ package com.pao.proiect.catalog.service;
 
 import com.pao.proiect.catalog.model.Materie;
 import com.pao.proiect.catalog.model.Profesor;
+import com.pao.proiect.catalog.service.AuditService;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -33,6 +34,7 @@ public class ProfesorService {
             throw new IllegalArgumentException("Profesor null");
         }
         profesoriDupaCnp.put(profesor.getCnp(), profesor);
+        AuditService.getInstance().log("adauga_profesor");
     }
 
     public void sterge(String cnp) {
@@ -56,6 +58,7 @@ public class ProfesorService {
     public void asociazaCuMaterie(String cnpProfesor, Materie materie) {
         Profesor p = cautaDupaCnp(cnpProfesor);
         p.adaugaMaterie(materie);
+        AuditService.getInstance().log("asociaza_profesor_materie");
     }
 
     public List<Profesor> listeazaToti() {
