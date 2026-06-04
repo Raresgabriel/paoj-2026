@@ -13,14 +13,19 @@ public final class DatabaseConnection {
     private Connection connection;
 
     private DatabaseConnection() throws IOException, SQLException {
-        Properties props = new Properties();
+        String url  = "jdbc:sqlite:lab12.db";
+        String user = "";
+        String pass = "";
         try (InputStream is = getClass().getClassLoader().getResourceAsStream("db.properties")) {
-            if (is == null) throw new IOException("Nu gasesc db.properties in resources/");
-            props.load(is);
+            if (is != null) {
+                Properties props = new Properties();
+                props.load(is);
+                url  = props.getProperty("db.url", url);
+                user = props.getProperty("db.user", "");
+                pass = props.getProperty("db.password", "");
+            }
         }
-        String url  = props.getProperty("db.url");
-        String user = props.getProperty("db.user");
-        String pass = props.getProperty("db.password");
+        try { Class.forName("org.sqlite.JDBC"); } catch (ClassNotFoundException ignored) {}
         this.connection = DriverManager.getConnection(url, user, pass);
         try (var stmt = connection.createStatement()) {
             stmt.execute("PRAGMA foreign_keys = ON");
